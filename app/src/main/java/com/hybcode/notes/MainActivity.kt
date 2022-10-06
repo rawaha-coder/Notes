@@ -57,4 +57,8 @@ class MainActivity : AppCompatActivity() {
     fun deleteNote(index: Int) {
 
     }
+
+    fun showNote(layoutPosition: Int) {
+
+    }
 }

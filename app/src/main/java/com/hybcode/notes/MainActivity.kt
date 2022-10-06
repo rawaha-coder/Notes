@@ -55,4 +55,12 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    fun createNewNote(note: Note) {
+
+    }
+
+    fun deleteNote(index: Int) {
+
+    }
 }

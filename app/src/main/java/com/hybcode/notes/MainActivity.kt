@@ -72,16 +72,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                settings()
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun settings() {
-        val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
     }
 
     fun createNewNote(note: Note) {

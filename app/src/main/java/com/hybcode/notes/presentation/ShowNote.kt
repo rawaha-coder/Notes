@@ -1,10 +1,13 @@
-package com.hybcode.notes
+package com.hybcode.notes.presentation
 
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.hybcode.notes.MainActivity
+import com.hybcode.notes.R
+import com.hybcode.notes.data.Note
 import com.hybcode.notes.databinding.ShowNoteBinding
 
 class ShowNote(private val note: Note, private val index: Int) : DialogFragment() {
@@ -22,7 +25,7 @@ class ShowNote(private val note: Note, private val index: Int) : DialogFragment(
             dismiss()
         }
         binding.buttonDelete.setOnClickListener{
-                    callingActivity.deleteNote(index)
+                    //callingActivity.deleteNote(index)
                     Toast.makeText(callingActivity, resources.getString(R.string.note_deleted),
                         Toast.LENGTH_SHORT).show()
                     dismiss()

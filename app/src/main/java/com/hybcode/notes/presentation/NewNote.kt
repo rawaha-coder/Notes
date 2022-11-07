@@ -1,10 +1,13 @@
-package com.hybcode.notes
+package com.hybcode.notes.presentation
 
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.hybcode.notes.MainActivity
+import com.hybcode.notes.R
+import com.hybcode.notes.data.Note
 import com.hybcode.notes.databinding.NewNoteBinding
 
 class NewNote: DialogFragment() {
@@ -28,7 +31,7 @@ class NewNote: DialogFragment() {
             val contents = binding.editContents.text.toString()
             if (title.isNotEmpty() && contents.isNotEmpty()) {
                 val note = Note(title, contents)
-                callingActivity.createNewNote(note)
+               // callingActivity.createNewNote(note)
                 Toast.makeText(callingActivity, resources.getString(R.string.note_saved), Toast.LENGTH_SHORT).show()
                 dismiss()
 

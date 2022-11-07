@@ -1,12 +1,15 @@
-package com.hybcode.notes
+package com.hybcode.notes.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hybcode.notes.MainActivity
+import com.hybcode.notes.R
+import com.hybcode.notes.data.Note
 
-class NoteAdapter(private val mainActivity: MainActivity) :
+class NoteAdapter() :
     RecyclerView.Adapter<NoteAdapter.ViewHolderNote>() {
     var noteList = mutableListOf<Note>()
 
@@ -22,7 +25,7 @@ class NoteAdapter(private val mainActivity: MainActivity) :
         }
 
         override fun onClick(view: View) {
-            mainActivity.showNote(layoutPosition)
+            //mainActivity.showNote(layoutPosition)
         }
     }
 

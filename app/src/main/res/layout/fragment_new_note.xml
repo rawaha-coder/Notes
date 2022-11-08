@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTitle"
+            android:id="@+id/editNoteTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -18,7 +18,7 @@
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editContents"
+            android:id="@+id/editNoteContents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
@@ -26,26 +26,6 @@
             android:inputType="text"
             android:importantForAutofill="no" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end">
-            <Button
-                android:id="@+id/buttonCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cancel"
-                style="?android:attr/buttonBarButtonStyle" />
-
-            <Button
-                android:id="@+id/buttonOK"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="@string/ok"
-                style="?android:attr/buttonBarButtonStyle" />
-
-        </TableRow>
 
 
     </LinearLayout>

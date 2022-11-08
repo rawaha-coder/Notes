@@ -7,14 +7,31 @@
 
     <fragment
         android:id="@+id/noteListFragment"
-        android:name="com.hybcode.notes.presentation.NoteListFragment"
+        android:name="com.hybcode.notes.view.NoteListFragment"
         android:label="fragment_note_list"
-        tools:layout="@layout/fragment_note_list" />
+        tools:layout="@layout/fragment_note_list" >
+        <action
+            android:id="@+id/action_noteListFragment_to_displayNoteFragment"
+            app:destination="@id/displayNoteFragment" >
+            <argument
+                android:name="index"
+                app:argType="integer"
+                android:defaultValue="-1" />
+        </action>
+        <action
+            android:id="@+id/action_noteListFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/displayNoteFragment"
-        android:name="com.hybcode.notes.presentation.DisplayNoteFragment"
+        android:name="com.hybcode.notes.view.DisplayNoteFragment"
         android:label="fragment_display_note"
-        tools:layout="@layout/fragment_display_note" />
+        tools:layout="@layout/fragment_display_note" >
+    </fragment>
+    <fragment
+        android:id="@+id/newNoteFragment"
+        android:name="com.hybcode.notes.view.NewNoteFragment"
+        android:label="NewNoteFragment" />
 
 </navigation>

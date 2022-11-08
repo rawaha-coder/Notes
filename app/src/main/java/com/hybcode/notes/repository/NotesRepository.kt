@@ -1,6 +1,6 @@
 package com.hybcode.notes.repository
 
-import com.hybcode.notes.model.Note
+import com.hybcode.notes.data.model.Note
 
 interface NotesRepository {
 

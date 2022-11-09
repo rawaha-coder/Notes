@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.hybcode.notes.data.db.NoteDatabase
 
 class NoteApplication: Application() {
+
     private val DB_NAME = "note_database"
 
     companion object {

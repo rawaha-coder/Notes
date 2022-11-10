@@ -3,6 +3,8 @@ package com.hybcode.notes
 import android.app.Application
 import androidx.room.Room
 import com.hybcode.notes.data.db.NoteDatabase
+import com.hybcode.notes.data.repository.NotesRepoRoomImp
+import com.hybcode.notes.data.repository.NotesRepository
 
 class NoteApplication: Application() {
 

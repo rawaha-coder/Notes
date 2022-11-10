@@ -1,5 +1,6 @@
 package com.hybcode.notes.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,10 +13,7 @@ import com.hybcode.notes.data.model.Note
 interface NoteDao {
 
     @Query("SELECT * FROM notes ORDER BY release_date")
-    suspend fun getAllNotes(): List<Note>
-
-    @Query("SELECT * FROM notes WHERE id = :noteId")
-    suspend fun getNote(noteId: Int): Note
+    fun getAllNotes(): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note)

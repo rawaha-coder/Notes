@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hybcode.notes.data.model.Note
 import com.hybcode.notes.databinding.NotePreviewBinding
 
-class NoteAdapter(private val notes: List<Note>,private val context: Context):
+class NoteAdapter(var notes: List<Note>):
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var noteClickListener: NoteClickListener? = null
@@ -30,18 +30,12 @@ class NoteAdapter(private val notes: List<Note>,private val context: Context):
             fun bind(note: Note){
                 binding.viewTitle.text = note.title
                 binding.viewContents.text = note.contents
+
                 binding.root.setOnClickListener {
                     noteClickListener?.onClick(note)
                 }
             }
     }
-
-    fun setOnNoteClickListener(noteClickListener: NoteClickListener) {
-        this.noteClickListener = noteClickListener
-    }
-
-
-
 
 }
 

@@ -32,22 +32,37 @@ class NoteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
+        setupUI()
         binding.fab.setOnClickListener{
             val action = NoteListFragmentDirections.actionNoteListFragmentToNewNoteFragment()
             findNavController().navigate(action)
         }
     }
 
-    private fun setupRecyclerView() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.setHasFixedSize(true)
+    private fun setupUI() {
+        val adapter = setupAdapter()
+        setupRecyclerView(adapter)
+        observeListNotesChange(adapter)
+    }
+
+    private fun setupAdapter(): NoteAdapter {
         val adapter = NoteAdapter(listOf())
-        binding.recyclerView.adapter = adapter
+        return adapter
+    }
+
+    private fun setupRecyclerView(noteAdapter:NoteAdapter) {
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = noteAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    fun observeListNotesChange(noteAdapter:NoteAdapter){
         viewModel.noteList.observe(viewLifecycleOwner, Observer {
             it?.apply {
-                adapter.notes = it
-                binding.recyclerView.adapter = adapter
+                noteAdapter.notes = it
+                binding.recyclerView.adapter = noteAdapter
             }
         })
     }

@@ -25,9 +25,21 @@
 
     <fragment
         android:id="@+id/displayNoteFragment"
-        android:name="com.hybcode.notes.view.DisplayNoteFragment"
+        android:name="com.hybcode.notes.view.ShowNoteFragment"
         android:label="fragment_display_note"
         tools:layout="@layout/fragment_display_note" >
+        <action
+            android:id="@+id/action_displayNoteFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment">
+            <argument
+                android:name="index"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+            <argument
+                android:name="update"
+                app:argType="boolean"
+                android:defaultValue="false"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"

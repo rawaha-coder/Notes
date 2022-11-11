@@ -1,4 +1,4 @@
-package com.hybcode.notes.view
+package com.hybcode.notes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

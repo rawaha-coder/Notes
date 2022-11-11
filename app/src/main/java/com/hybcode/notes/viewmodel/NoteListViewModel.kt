@@ -1,13 +1,49 @@
 package com.hybcode.notes.viewmodel
 
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import android.app.Application
+import androidx.lifecycle.*
+import com.hybcode.notes.data.db.NoteDao
+import com.hybcode.notes.data.db.NoteDatabase
 import com.hybcode.notes.data.model.Note
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class NoteListViewModel(): ViewModel() {
 
+class NoteListViewModel(app: Application): ViewModel() {
+
+    var noteList : LiveData<List<Note>>
+    private val noteDao: NoteDao
+
+    init {
+        noteDao = NoteDatabase.getInstance(app).noteDao()
+        noteList = noteDao.getAllNotes()
+    }
+
+    fun getAllSavedNotes(){
+
+    }
+
+    fun saveNote(note: Note){
+        viewModelScope.launch(Dispatchers.IO) {
+            noteDao.insertNote(note)
+        }
+    }
+
+    fun updateNote(note: Note){
+        viewModelScope.launch(Dispatchers.IO) {
+            noteDao.updateNote(note)
+        }
+    }
+
+    fun deleteNote(note:Note){
+        viewModelScope.launch(Dispatchers.IO) {
+            noteDao.deleteNote(note)
+        }
+    }
+
+    fun deleteNotesList(list: List<Note>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            noteDao.deleteNotes(list)
+        }
+    }
 }

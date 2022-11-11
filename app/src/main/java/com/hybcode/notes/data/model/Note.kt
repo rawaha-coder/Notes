@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "notes")
 data class Note(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     var title: String?,
     var contents: String?,
     @ColumnInfo(name = "release_date")var releaseDate: Date?

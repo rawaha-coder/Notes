@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/displayNoteFragment"
         android:name="com.hybcode.notes.view.ShowNoteFragment"
-        android:label="Note"
+        android:label=" "
         tools:layout="@layout/fragment_display_note" >
         <action
             android:id="@+id/action_displayNoteFragment_to_newNoteFragment"
@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/newNoteFragment"
         android:name="com.hybcode.notes.view.NewNoteFragment"
-        android:label="New Note" />
+        android:label=" " />
     <fragment
         android:id="@+id/deleteNoteFragment"
         android:name="com.hybcode.notes.view.DeleteNoteFragment"

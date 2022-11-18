@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.hybcode.notes.R
 import com.hybcode.notes.databinding.ActivityMainBinding
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
     private val appBarConfiguration by lazy {
-        AppBarConfiguration(topLevelDestinationIds = setOf(R.id.noteListFragment, R.id.newNoteFragment))
+        AppBarConfiguration(topLevelDestinationIds = setOf(R.id.noteListFragment))
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupActionBar()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     private fun setupActionBar() {

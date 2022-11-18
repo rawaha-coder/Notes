@@ -2,12 +2,19 @@ package com.hybcode.notes.view
 
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hybcode.notes.data.model.Note
+import com.hybcode.notes.R
 import com.hybcode.notes.databinding.FragmentNoteListBinding
 import com.hybcode.notes.viewmodel.NoteListViewModel
 import com.hybcode.notes.viewmodel.NoteListViewModelFactory
@@ -18,9 +25,38 @@ class NoteListFragment : Fragment() {
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var navController: NavController
+
     private val viewModel: NoteListViewModel by viewModels {
         NoteListViewModelFactory(requireActivity().application)
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        val appBarConfiguration = AppBarConfiguration(
+//            topLevelDestinationIds = setOf(),
+//            fallbackOnNavigateUpListener = ::onSupportNavigateUp
+//        )
+//
+//        findViewById<Toolbar>(R.id.toolbar)
+//            .setupWithNavController(navController, appBarConfiguration)
+
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +68,7 @@ class NoteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = findNavController()
         setupUI()
         binding.fab.setOnClickListener{
             val action = NoteListFragmentDirections.actionNoteListFragmentToNewNoteFragment()
@@ -45,12 +82,12 @@ class NoteListFragment : Fragment() {
         observeListNotesChange(adapter)
     }
 
-    private fun setupAdapter(): NoteAdapter {
-        val adapter = NoteAdapter(listOf())
+    private fun setupAdapter(): NoteListAdapter {
+        val adapter = NoteListAdapter(listOf())
         return adapter
     }
 
-    private fun setupRecyclerView(noteAdapter:NoteAdapter) {
+    private fun setupRecyclerView(noteAdapter:NoteListAdapter) {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             this.adapter = noteAdapter
@@ -58,19 +95,13 @@ class NoteListFragment : Fragment() {
         }
     }
 
-    fun observeListNotesChange(noteAdapter:NoteAdapter){
+    fun observeListNotesChange(noteAdapter:NoteListAdapter){
         viewModel.noteList.observe(viewLifecycleOwner, Observer {
             it?.apply {
                 noteAdapter.notes = it
                 binding.recyclerView.adapter = noteAdapter
             }
         })
-    }
-
-    private fun deleteListNote(list: List<Note>) {
-        viewModel.noteList.value?.let {
-            viewModel.deleteNotesList(it)
-        }
     }
 
     override fun onDestroy() {

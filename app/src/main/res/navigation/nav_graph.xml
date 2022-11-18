@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/noteListFragment"
         android:name="com.hybcode.notes.view.NoteListFragment"
-        android:label="fragment_note_list"
+        android:label=" "
         tools:layout="@layout/fragment_note_list" >
         <action
             android:id="@+id/action_noteListFragment_to_displayNoteFragment"
@@ -21,12 +21,20 @@
         <action
             android:id="@+id/action_noteListFragment_to_newNoteFragment"
             app:destination="@id/newNoteFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_deleteNoteFragment"
+            app:destination="@id/deleteNoteFragment" >
+            <argument
+                android:name="index"
+                app:argType="integer"
+                android:defaultValue="-1" />
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/displayNoteFragment"
         android:name="com.hybcode.notes.view.ShowNoteFragment"
-        android:label="fragment_display_note"
+        android:label="Note"
         tools:layout="@layout/fragment_display_note" >
         <action
             android:id="@+id/action_displayNoteFragment_to_newNoteFragment"
@@ -44,6 +52,10 @@
     <fragment
         android:id="@+id/newNoteFragment"
         android:name="com.hybcode.notes.view.NewNoteFragment"
-        android:label="NewNoteFragment" />
+        android:label="New Note" />
+    <fragment
+        android:id="@+id/deleteNoteFragment"
+        android:name="com.hybcode.notes.view.DeleteNoteFragment"
+        android:label="Delete Note" />
 
 </navigation>

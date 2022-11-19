@@ -1,10 +1,12 @@
 package com.hybcode.notes.view
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +15,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hybcode.notes.R
 import com.hybcode.notes.databinding.FragmentNoteListBinding
@@ -31,11 +35,15 @@ class NoteListFragment : Fragment() {
         NoteListViewModelFactory(requireActivity().application)
     }
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNoteListBinding.inflate(inflater, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
         return binding.root
     }
 
@@ -80,6 +88,18 @@ class NoteListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val nightThemeSelected = sharedPreferences.getBoolean("theme", false)
+        if (nightThemeSelected) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        val showDividingLines = sharedPreferences.getBoolean("dividingLines", false)
+        if (showDividingLines) binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+        )
+        else if (binding.recyclerView.itemDecorationCount > 0) binding.recyclerView.removeItemDecorationAt(0)
     }
 
 }

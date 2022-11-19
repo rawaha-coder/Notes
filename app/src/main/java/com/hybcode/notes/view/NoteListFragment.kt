@@ -97,8 +97,7 @@ class NoteListFragment : Fragment() {
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         val showDividingLines = sharedPreferences.getBoolean("dividingLines", false)
         if (showDividingLines) binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(context,
-                LinearLayoutManager.VERTICAL)
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
         )
         else if (binding.recyclerView.itemDecorationCount > 0) binding.recyclerView.removeItemDecorationAt(0)
     }

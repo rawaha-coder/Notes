@@ -40,7 +40,7 @@ class NoteListAdapter(var notes: List<Note>) :
 
         fun bind(note: Note) {
             binding.viewTitle.text = note.title
-            binding.viewContents.text = note.contents
+            binding.viewContents.text = note.releaseDate.toString()
             binding.checkBox
         }
     }

@@ -15,9 +15,9 @@ import java.util.*
 
 class NewNoteFragment : Fragment() {
 
-    private var _binding : FragmentNewNoteBinding? = null
+    private var _binding: FragmentNewNoteBinding? = null
     private val binding get() = _binding!!
-    private var note : Note? = null
+    private var note: Note? = null
     private val viewModel: NoteListViewModel by viewModels {
         NoteListViewModelFactory(requireActivity().application)
     }
@@ -36,9 +36,9 @@ class NewNoteFragment : Fragment() {
         val update = arguments?.getBoolean("update") ?: false
         if (update) displayNote(index)
         binding.fabSave.setOnClickListener {
-            if (update){
+            if (update) {
                 updateNote(index)
-            }else{
+            } else {
                 saveNewNote()
             }
             findNavController().popBackStack()
@@ -46,9 +46,10 @@ class NewNoteFragment : Fragment() {
     }
 
     private fun updateNote(index: Int) {
-        note = Note(id = index,
+        note = Note(
+            id = index,
             title = binding.editNoteTitle.text.toString(),
-            contents = binding.editNoteTitle.text.toString(),
+            contents = binding.editNoteContents.text.toString(),
             releaseDate = Date()
         )
         viewModel.updateNote(note!!)
@@ -57,7 +58,7 @@ class NewNoteFragment : Fragment() {
     private fun saveNewNote() {
         val note = Note(
             title = binding.editNoteTitle.text.toString(),
-            contents = binding.editNoteTitle.text.toString(),
+            contents = binding.editNoteContents.text.toString(),
             releaseDate = Date()
         )
         viewModel.saveNote(note)
@@ -72,9 +73,9 @@ class NewNoteFragment : Fragment() {
         }
     }
 
-    private fun setupNote(note: Note){
-         binding.editNoteContents.setText(note.contents)
+    private fun setupNote(note: Note) {
         binding.editNoteTitle.setText(note.title)
+        binding.editNoteContents.setText(note.contents)
     }
 
     override fun onDestroy() {

@@ -19,10 +19,6 @@ class NoteListViewModel(app: Application): ViewModel() {
         noteList = noteDao.getAllNotes()
     }
 
-    fun getAllSavedNotes(){
-
-    }
-
     fun saveNote(note: Note){
         viewModelScope.launch(Dispatchers.IO) {
             noteDao.insertNote(note)

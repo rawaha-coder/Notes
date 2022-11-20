@@ -43,7 +43,6 @@ class NoteListFragment : Fragment() {
     ): View? {
         _binding = FragmentNoteListBinding.inflate(inflater, container, false)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
         return binding.root
     }
 

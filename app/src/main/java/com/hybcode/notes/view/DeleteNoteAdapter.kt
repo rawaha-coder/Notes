@@ -48,7 +48,7 @@ class DeleteNoteAdapter(
 
     override fun getItemCount(): Int = notes.size
 
-    inner class ViewHolder(private val binding: FragmentDeleteNoteBinding) :
+    inner class ViewHolder(binding: FragmentDeleteNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val titleView: TextView = binding.title
         private val contentView: TextView = binding.contents
@@ -56,7 +56,7 @@ class DeleteNoteAdapter(
 
         fun bind(note: Note){
             titleView.text = note.title
-            contentView.text = note.contents
+            contentView.text = note.releaseDate.toString()
         }
     }
 

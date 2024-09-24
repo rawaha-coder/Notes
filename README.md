@@ -1,6 +1,5 @@
 # A beautiful Notes App for Android users
-
-This repo created to practice my coding skills in android development.
+ A beautiful ans simple Notes App for Android users
 
 <img src="https://github.com/rawaha-coder/Notes/blob/main/note%200.png" />
 
